@@ -150,7 +150,7 @@ If the model predicts fraud (`1`), an **email notification** is triggered via Am
 ```bash
 curl -X POST "https://oo5t7ptj75.execute-api.ap-south-1.amazonaws.com/prod/InvokeCreditCardEndpoint" \  
   -H "Content-Type: application/json" \  
-  -d '{"features":[41505,-16.52,8.58,-18.64,9.50,-13.79,-2.83,-16.70,7.51,-8.50,-14.11,5.29,-10.83,1.67,-9.37,0.36,-9.89,-19.23,-8.39,3.10,-1.51,1.19,-1.12,-2.35,0.67,-1.41,-0.46,-2.01,-1.04,364.19]}'
+  -d '{"features":[41505,-16.52,8.58,-18.64,9.50,-13.79,-2.83,-16.70,7.51,-8.50,-14.11,5.29,-10.83,1.67,-9.37,0.36,-9.89,-19.23,-8.39,3.10,-1.51,1.19,-1.12,-2.35,0.67,-1.41,-0.46,-2.01,-1.04,364.19]}'  ```
 
 ## 🔮 Future Enhancements
 
