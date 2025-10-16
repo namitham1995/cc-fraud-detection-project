@@ -28,7 +28,9 @@ SageMaker Endpoint (Model)
 Lambda (Trigger SNS)
 ↓
 Amazon SNS (Email Notification)  
+
 ## 📂 Project Structure  
+
 credit-card-fraud-detection/  
 │  
 ├─ data/  
@@ -50,6 +52,7 @@ credit-card-fraud-detection/
 │ └─ index.html # Customer UI to submit transactions  
 
 Service	Purpose  
+
 Amazon S3   	Store dataset, processed files, and trained model artifacts  
 Amazon  SageMaker  	Preprocess, train, and deploy ML model as real-time endpoint  
 AWS Lambda  	Backend logic for invoking model & triggering SNS  
@@ -57,6 +60,7 @@ Amazon API   Gateway  	Expose Lambda as REST API for frontend
 Amazon SNS  	Send email alerts for fraudulent transactions   
 CloudWatch  	Log monitoring for Lambda and API calls 
 AWS     CloudShell  	Used for running AWS CLI commands, uploading files to S3, testing SageMaker endpoints, and managing project resources directly from the browser  
+
   ## 🧪 Steps to Reproduce
 
 ### 1️⃣ **Data Upload**
