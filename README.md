@@ -101,17 +101,19 @@ Run `notebooks/preprocessing.ipynb` or `scripts/preprocessing.py` to:
 
 Below are the results after testing the deployed **REST API** using the **frontend**, **AWS CloudShell**, and **API Gateway**.
 
+### 🧠 REST API Test via CloudShell
+Using AWS CloudShell, we sent test transactions directly to the API Gateway endpoint using `curl` to verify backend responses.
+![CloudShell Test](images/cloudshell.png)
+
+---
+
+
 ### 🌐 Frontend Webpage (Customer UI)
 The customer enters transaction details in the HTML form and gets an instant fraud prediction.
 ![Frontend Webpage](images/webpage.png)
 
 ---
 
-### 🧠 REST API Test via CloudShell
-Using AWS CloudShell, we sent test transactions directly to the API Gateway endpoint using `curl` to verify backend responses.
-![CloudShell Test](images/cloudshell.png)
-
----
 
 ### 🛠️ API Gateway Permissions / Testing
 API Gateway console test to ensure **Lambda integration & permissions** are correctly set.
@@ -126,4 +128,36 @@ If the model predicts fraud (`1`), an **email notification** is triggered via Am
 
 
 If the model predicts fraud (`1`), an **email notification** is triggered via Amazon SNS.
-![SNS Email Alert](screenshots/emailalert.png)
+![SNS Email Alert](images/emailalert.png)
+
+## 🚀 Usage
+
+### Open the Frontend
+- Open `frontend/index.html` in a web browser.  
+- Enter the 30 transaction features (`Time`, `V1–V28`, `Amount`).
+
+### Submit Transaction
+- Click **Check Fraud**.  
+- The frontend sends a request to **API Gateway → Lambda → SageMaker Endpoint**.
+
+### View Prediction
+- `0` → ✅ Legitimate Transaction  
+- `1` → 🚨 Fraudulent Transaction (triggers SNS email alert)
+
+### Testing via CloudShell
+- Test SageMaker endpoint or Lambda using JSON payloads:
+
+```bash
+curl -X POST "https://oo5t7ptj75.execute-api.ap-south-1.amazonaws.com/prod/InvokeCreditCardEndpoint" \  
+  -H "Content-Type: application/json" \  
+  -d '{"features":[41505,-16.52,8.58,-18.64,9.50,-13.79,-2.83,-16.70,7.51,-8.50,-14.11,5.29,-10.83,1.67,-9.37,0.36,-9.89,-19.23,-8.39,3.10,-1.51,1.19,-1.12,-2.35,0.67,-1.41,-0.46,-2.01,-1.04,364.19]}'
+
+## 🔮 Future Enhancements
+
+1- Improve model accuracy with advanced ML models and hyperparameter tuning.  
+2- Build a real-time dashboard for transaction visualization.  
+3- Integrate CloudWatch metrics for production monitoring.  
+4- Implement authentication and encryption for enhanced security.  
+
+
+
