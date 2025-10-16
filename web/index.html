@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Credit Card Fraud Detection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 800px;
+    }
+    input {
+      width: 120px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💳 Credit Card Fraud Detection</h1>
+  <p>Enter the 30 transaction features below and click <b>Check Fraud</b> to get a real-time prediction.</p>
+
+  <form id="transactionForm"></form>
+
+  <div id="result"></div>
+
+  <script>
+    // ✅ Use your REST API URL
+    const apiUrl = 'https://oo5t7ptj75.execute-api.ap-south-1.amazonaws.com/prod/InvokeCreditCardEndpoint';
+
+    const form = document.getElementById('transactionForm');
+
+    // Feature names for placeholders
+    const featureNames = [
+      "Time","V1","V2","V3","V4","V5","V6","V7","V8","V9",
+      "V10","V11","V12","V13","V14","V15","V16","V17","V18","V19",
+      "V20","V21","V22","V23","V24","V25","V26","V27","V28","Amount"
+    ];
+
+    // Create input fields dynamically
+    for (let i = 0; i < 30; i++) {
+      const input = document.createElement('input');
+      input.name = `feature${i+1}`;
+      input.placeholder = featureNames[i];
+      input.required = true;
+      form.appendChild(input);
+    }
+
+    // Add submit button
+    const button = document.createElement('button');
+    button.type = 'submit';
+    button.textContent = 'Check Fraud';
+    form.appendChild(button);
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Collect numeric values
+      const featuresArray = Array.from(e.target.elements)
+        .filter(el => el.name.startsWith('feature'))
+        .map(el => parseFloat(el.value));
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ features: featuresArray })
+        });
+
+        const data = await response.json();
+
+        const result = document.getElementById('result');
+
+        if (data.prediction === 1) {
+          result.innerText = '🚨 Prediction: FRAUDULENT Transaction Detected!';
+          result.style.color = 'red';
+        } else {
+          result.innerText = '✅ Prediction: Legitimate Transaction';
+          result.style.color = 'green';
+        }
+      } catch (err) {
+        console.error(err);
+        const result = document.getElementById('result');
+        result.innerText = '❌ Error: Unable to get prediction.';
+        result.style.color = 'black';
+      }
+    });
+  </script>
+
+</body>
+</html>

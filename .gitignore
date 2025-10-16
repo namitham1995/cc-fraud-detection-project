@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model / artifacts
+*.joblib
+*.pkl
+*.tar.gz
+
+# VSCode
+.vscode/
+
+# Secrets
+.env
+aws_credentials.json
+
+# Large data (do not push your full dataset)
+data/
