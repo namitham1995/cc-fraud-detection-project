@@ -15,19 +15,21 @@ A simple **customer application (HTML UI)** interacts with **API Gateway**, **La
 
 ---
 
-## 🏗️ Architecture
-![Architecture](images/architecure.png)
-Customer (HTML Form)
-↓
-Amazon API Gateway (REST API)
-↓
-Lambda (Invoke Endpoint)
-↓
-SageMaker Endpoint (Model)
-↓
-Lambda (Trigger SNS)
-↓
-Amazon SNS (Email Notification)  
+## 🏗️ Architecture  
+
+![Architecture](images/architecure.png)  
+  
+Customer (HTML Form)  
+↓  
+Amazon API Gateway (REST API)  
+↓  
+Lambda (Invoke Endpoint)  
+↓  
+SageMaker Endpoint (Model)  
+↓  
+Lambda (Trigger SNS)  
+↓  
+Amazon SNS (Email Notification)    
 
 ## 📂 Project Structure  
 
@@ -53,13 +55,17 @@ credit-card-fraud-detection/
 
 Service	Purpose  
 
-Amazon S3   	Store dataset, processed files, and trained model artifacts  
-Amazon  SageMaker  	Preprocess, train, and deploy ML model as real-time endpoint  
-AWS Lambda  	Backend logic for invoking model & triggering SNS  
-Amazon API   Gateway  	Expose Lambda as REST API for frontend   
-Amazon SNS  	Send email alerts for fraudulent transactions   
-CloudWatch  	Log monitoring for Lambda and API calls 
-AWS     CloudShell  	Used for running AWS CLI commands, uploading files to S3, testing SageMaker endpoints, and managing project resources directly from the browser  
+## ⚡ AWS Services Used
+
+| Service              | Purpose |  
+|----------------------|---------|  
+| **Amazon S3**        | Store dataset, processed files, and trained model artifacts |  
+| **Amazon SageMaker** | Preprocess, train, and deploy ML model as real-time endpoint |   
+| **AWS Lambda**       | Backend logic for invoking model & triggering SNS |  
+| **Amazon API Gateway** | Expose Lambda as REST API for frontend |  
+| **Amazon SNS**       | Send email alerts for fraudulent transactions |  
+| **Amazon CloudWatch**| Log monitoring for Lambda and API calls |  
+| **AWS CloudShell**   | Run CLI commands, upload files to S3, test endpoints, manage resources |  
 
   ## 🧪 Steps to Reproduce
 
